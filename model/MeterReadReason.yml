@@ -1,0 +1,41 @@
+# Split from UtilityAIOntology.cube.yml - see Cube_Format_Changes_Needed.md
+# for the full list of open items (BigQuery sql_table qualification, join FK
+# verification, placeholder primary keys) that still need review for this cube.
+cubes:
+  - name: MeterReadReason
+    title: Meter Read Reason
+    description: List of meter read reasons
+    sql_table: eng_ao_format_testing.meter_read_reason
+    dimensions:
+      - name: description
+        sql: "{CUBE}.description"
+        type: string
+        title: Description
+        meta:
+          llm_description: A detailed explanation of the reason for reading the meter.
+      - name: id
+        sql: "{CUBE}.id"
+        type: string
+        primary_key: true
+        title: ID
+        meta:
+          llm_description: A unique identifier for each meter read reason.
+      - name: name
+        sql: "{CUBE}.name"
+        type: string
+        title: Name
+        meta:
+          llm_description: The name or title of the meter read reason.
+    measures:
+      - name: count
+        type: count
+    meta:
+      uid: com::apporchid::utilityai::MeterReadReason
+      llm_description: The MeterReadReason table captures the reasons for meter readings, including a description, unique identifier, and name for each reason, facilitating the categorization and analysis of meter reading activities.
+      words:
+        - word: read reason
+          wordType: word
+          synonyms: []
+          plural: read reasons
+          abbreviation:
+          weight: 1

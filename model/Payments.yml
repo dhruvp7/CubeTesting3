@@ -1,0 +1,74 @@
+# Split from UtilityAIOntology.cube.yml - see Cube_Format_Changes_Needed.md
+# for the full list of open items (BigQuery sql_table qualification, join FK
+# verification, placeholder primary keys) that still need review for this cube.
+cubes:
+  - name: Payments
+    title: Payments
+    description: Payments
+    sql_table: eng_ao_format_testing.payments
+    joins:
+      - name: Bills
+        relationship: one_to_one
+        sql: "{CUBE}.bill_id = {Bills}.id"
+      - name: ContractAccount
+        relationship: many_to_one
+        sql: "{CUBE}.contract_account_id = {ContractAccount}.id"
+      - name: Customer
+        relationship: many_to_one
+        sql: "{CUBE}.customer_id = {Customer}.id"
+    dimensions:
+      - name: dueDate
+        sql: "{CUBE}.due_date"
+        type: time
+        title: Due date
+        meta:
+          llm_description: The date by which the payment is due.
+      - name: id
+        sql: "{CUBE}.payment_id"
+        type: string
+        primary_key: true
+        title: ID
+        meta:
+          llm_description: Unique identifier for the payment transaction.
+      - name: isOnTime
+        sql: "{CUBE}.on_time_flag"
+        type: boolean
+        title: Is on time?
+        meta:
+          llm_description: Indicates whether the payment was made on time.
+      - name: isPaymentReturned
+        sql: "{CUBE}.payment_return_flag"
+        type: boolean
+        title: Is payment returned
+        meta:
+          llm_description: Indicates whether the payment was returned.
+      - name: paymentDate
+        sql: "{CUBE}.payment_date"
+        type: time
+        title: Payment date
+        meta:
+          llm_description: The date on which the payment was made.
+      - name: paymentMethod
+        sql: "{CUBE}.payment_method"
+        type: string
+        title: Payment method
+        meta:
+          llm_description: The method used for making the payment.
+      - name: returnDate
+        sql: "{CUBE}.return_date"
+        type: time
+        title: Payment return date
+        meta:
+          llm_description: The date on which the payment was returned, if applicable.
+      - name: paymentReturnID
+        sql: "{CUBE}.payment_return_id"
+        type: string
+        title: Payment return ID
+        meta:
+          llm_description: Unique identifier for the returned payment, if applicable.
+    measures:
+      - name: count
+        type: count
+    meta:
+      uid: com::apporchid::utilityai::Payments
+      llm_description: The Payments table tracks detailed information about customer payments, including bill and contract account IDs, payment amounts, dates, methods, and statuses such as on-time payment and payment returns.

@@ -1,0 +1,58 @@
+# Split from UtilityAIOntology.cube.yml - see Cube_Format_Changes_Needed.md
+# for the full list of open items (BigQuery sql_table qualification, join FK
+# verification, placeholder primary keys) that still need review for this cube.
+cubes:
+  - name: CustomerInteractionsView
+    title: Customer Interactions View
+    description: Customer Interactions View
+    sql_table: eng_ao_format_testing.view_customer_interactions
+    dimensions:
+      - name: additionalProps
+        sql: "{CUBE}.additional_props"
+        type: string
+        title: Additional Props
+        meta:
+          llm_description: Additional properties related to the customer interaction.
+      - name: contractAccountId
+        sql: "{CUBE}.contract_account_id"
+        type: string
+        title: Contract Account
+        meta:
+          llm_description: Unique identifier for the customer's contract account.
+      - name: id
+        sql: "{CUBE}.id"
+        type: number
+        primary_key: true
+        title: Id
+        meta:
+          llm_description: Unique identifier for each customer interaction record.
+      - name: interactionDate
+        sql: "{CUBE}.interaction_date"
+        type: time
+        title: Interaction Date
+        meta:
+          llm_description: The date when the customer interaction took place.
+      - name: interactionDescription
+        sql: "{CUBE}.interaction_description"
+        type: string
+        title: Interaction Description
+        meta:
+          llm_description: A detailed description of the customer interaction.
+      - name: interactionType
+        sql: "{CUBE}.interaction_type"
+        type: string
+        title: Interaction Type
+        meta:
+          llm_description: The type or category of the customer interaction.
+      - name: type
+        sql: "{CUBE}.type"
+        type: string
+        title: Type
+        meta:
+          llm_description: General classification or type of the interaction.
+    measures:
+      - name: count
+        type: count
+    meta:
+      uid: com::apporchid::utilityai::CustomerInteractionsView
+      llm_description: CustomerInteractionsView table captures detailed records of customer interactions, including account details, interaction type, date, and descriptions, facilitating comprehensive tracking and analysis of customer engagement.

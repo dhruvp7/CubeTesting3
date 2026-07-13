@@ -1,0 +1,53 @@
+# Split from UtilityAIOntology.cube.yml - see Cube_Format_Changes_Needed.md
+# for the full list of open items (BigQuery sql_table qualification, join FK
+# verification, placeholder primary keys) that still need review for this cube.
+cubes:
+  - name: UtilitiesDocument
+    title: Utilities Document
+    description: Documents used in utilities
+    sql_table: eng_ao_format_testing.utilities_document
+    dimensions:
+      - name: description
+        sql: "{CUBE}.description"
+        type: string
+        title: Description
+        meta:
+          llm_description: A brief summary or explanation of the document's content.
+      - name: id
+        sql: "{CUBE}.id"
+        type: string
+        primary_key: true
+        title: ID
+        meta:
+          llm_description: A unique identifier assigned to each document.
+      - name: name
+        sql: "{CUBE}.name"
+        type: string
+        title: Name
+        meta:
+          llm_description: The title or name of the document.
+      - name: type
+        sql: "{CUBE}.type"
+        type: string
+        title: Type
+        meta:
+          llm_description: The category or classification of the document.
+      - name: url
+        sql: "{CUBE}.url"
+        type: string
+        title: URL of document
+        meta:
+          llm_description: The web address where the document can be accessed.
+    measures:
+      - name: count
+        type: count
+    meta:
+      uid: com::apporchid::utilityai::UtilitiesDocument
+      llm_description: UtilitiesDocument table stores metadata about utility-related documents, including their description, unique identifier, name, type, and URL for access.
+      words:
+        - word: document
+          wordType: word
+          synonyms: []
+          plural: documents
+          abbreviation:
+          weight: 1

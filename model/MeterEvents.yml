@@ -1,0 +1,82 @@
+# Split from UtilityAIOntology.cube.yml - see Cube_Format_Changes_Needed.md
+# for the full list of open items (BigQuery sql_table qualification, join FK
+# verification, placeholder primary keys) that still need review for this cube.
+cubes:
+  - name: MeterEvents
+    title: Meter Events
+    description: Meter Events
+    sql_table: eng_ao_format_testing.meter_events
+    dimensions:
+      - name: baselineRate
+        sql: "{CUBE}.baseline_rate"
+        type: number
+        title: Baseline Rate
+      - name: batch
+        sql: "{CUBE}.batch_id"
+        type: number
+        title: Batch
+      - name: consumption
+        sql: "{CUBE}.consumption"
+        type: number
+        title: Consumption
+      - name: featureImpact
+        sql: "{CUBE}.featureImpact"
+        type: string
+        title: Feature Importance
+      - name: lat
+        sql: "{CUBE}.lat"
+        type: number
+        title: Lat
+      - name: location
+        sql: "{CUBE}.location"
+        type: string
+        title: Location
+      - name: lon
+        sql: "{CUBE}.lon"
+        type: number
+        title: Lon
+      - name: manufacturer
+        sql: "{CUBE}.manufacturer"
+        type: string
+        title: Manufacturer
+      - name: meterId
+        sql: "{CUBE}.meter_id"
+        type: number
+        title: Meter
+      - name: meterHazardRate
+        sql: "{CUBE}.meterHazardRate"
+        type: number
+        title: Meter Hazard Rate
+      - name: baseHazardRate
+        sql: "{CUBE}.baseHazardRate"
+        type: number
+        title: Meter Hazard Rate
+      - name: size
+        sql: "{CUBE}.size"
+        type: string
+        title: Size
+      - name: state
+        sql: "{CUBE}.state"
+        type: string
+        title: State
+      - name: meterSurvivalHazardRate
+        sql: "{CUBE}.meterSurvivalHazardRate"
+        type: number
+        title: Survival Hazard Rate
+      - name: temperature
+        sql: "{CUBE}.temperature"
+        type: number
+        title: Temperature
+      - name: time
+        sql: "{CUBE}.observation_date"
+        type: number
+        title: Time
+      - name: zipcode
+        sql: "{CUBE}.zipcode"
+        type: string
+        title: Zipcode
+    measures:
+      - name: count
+        type: count
+    meta:
+      uid: com::apporchid::customer::ui::insights::MeterEvents

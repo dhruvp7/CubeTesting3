@@ -1,0 +1,43 @@
+# Split from UtilityAIOntology.cube.yml - see Cube_Format_Changes_Needed.md
+# for the full list of open items (BigQuery sql_table qualification, join FK
+# verification, placeholder primary keys) that still need review for this cube.
+cubes:
+  - name: ServiceOrderNotes
+    title: Service Order Notes
+    sql_table: eng_ao_format_testing.service_order_notes
+    joins:
+      - name: ServiceOrder
+        relationship: many_to_one
+        sql: "{CUBE}.service_order_id = {ServiceOrder}.id"
+    dimensions:
+      - name: createdBy
+        sql: "{CUBE}.created_by"
+        type: string
+        title: Created By
+        meta:
+          llm_description: The user or system that created the note.
+      - name: createdOn
+        sql: "{CUBE}.created_on"
+        type: time
+        title: Created On
+        meta:
+          llm_description: The date and time when the note was created.
+      - name: id
+        sql: "{CUBE}.notes_id"
+        type: string
+        primary_key: true
+        title: ID
+        meta:
+          llm_description: A unique identifier for each note.
+      - name: notes
+        sql: "{CUBE}.notes"
+        type: string
+        title: Notes
+        meta:
+          llm_description: The content or message of the note.
+    measures:
+      - name: count
+        type: count
+    meta:
+      uid: com::apporchid::utilityai::ServiceOrderNotes
+      llm_description: ServiceOrderNotes table captures details about notes related to service orders, including the creator, creation date, unique identifier, note content, and associated service order ID.
