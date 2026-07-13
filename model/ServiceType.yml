@@ -1,0 +1,34 @@
+# Split from UtilityAIOntology.cube.yml - see Cube_Format_Changes_Needed.md
+# for the full list of open items (BigQuery sql_table qualification, join FK
+# verification, placeholder primary keys) that still need review for this cube.
+cubes:
+  - name: ServiceType
+    title: Service Type
+    description: List of utility service types
+    sql_table: eng_ao_format_testing.ServiceType
+    dimensions:
+      - name: description
+        sql: "{CUBE}.description"
+        type: string
+        title: Description
+        meta:
+          llm_description: A detailed explanation of the service type.
+      - name: id
+        sql: "{CUBE}.id"
+        type: string
+        primary_key: true
+        title: ID
+        meta:
+          llm_description: A unique identifier for the service type.
+      - name: name
+        sql: "{CUBE}.name"
+        type: string
+        title: Name
+        meta:
+          llm_description: The name of the service type.
+    measures:
+      - name: count
+        type: count
+    meta:
+      uid: com::apporchid::utilityai::ServiceType
+      llm_description: ServiceType table defines various service categories with unique identifiers, names, and descriptions, facilitating the classification and management of different service types within the water meter and asset management system.

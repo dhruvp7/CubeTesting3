@@ -1,0 +1,480 @@
+# Split from UtilityAIOntology.cube.yml - see Cube_Format_Changes_Needed.md
+# for the full list of open items (BigQuery sql_table qualification, join FK
+# verification, placeholder primary keys) that still need review for this cube.
+cubes:
+  - name: Storm
+    title: Storm
+    description: This mso represents Storm..
+    sql_table: eng_ao_format_testing.Storm
+    dimensions:
+      - name: basin
+        sql: "{CUBE}.basin"
+        type: string
+        title: Basin
+        meta:
+          llm_description: The geographical basin where the storm occurred.
+      - name: endDateTime
+        sql: "{CUBE}.end_date_time"
+        type: time
+        title: End Date Time
+        meta:
+          llm_description: The date and time when the storm ended.
+      - name: geom
+        sql: "{CUBE}.geom"
+        type: string
+        title: Geom
+        meta:
+          llm_description: Geometric representation of the storm's path or affected area.
+      - name: intensity
+        sql: "{CUBE}.intensity"
+        type: number
+        title: Intensity
+        meta:
+          llm_description: The intensity level of the storm.
+      - name: name
+        sql: "{CUBE}.name"
+        type: string
+        title: Name
+        meta:
+          llm_description: The name assigned to the storm.
+          words:
+            - word: AGATHA
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight: 1
+            - word: ALEX
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight: 1
+            - word: ANA
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight: 1
+            - word: ANDRES
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight: 1
+            - word: BILL
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight: 1
+            - word: BLANCA
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight: 1
+            - word: BLAS
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight: 1
+            - word: CARLOS
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight: 1
+            - word: CELIA
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight: 1
+            - word: CLAUDETTE
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight: 1
+            - word: COLIN
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: DANIELLE
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: DANNY
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: DOLORES
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: ELSA
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: ENRIQUE
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: ESTELLE
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: FELICIA
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: FRANK
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: FRED
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: GEORGETTE
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: GRACE
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: GUILLERMO
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: HENRI
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: HERMINE
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: HILDA
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: IDA
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: IGNACIO
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: JAVIER
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: JIMENA
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: JULIAN
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: KARL
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: KATE
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: KEVIN
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: LARRY
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: LESTER
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: LINDA
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: MADELINE
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: MARTY
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: MINDY
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: NEWTON
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: NICHOLAS
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: NORA
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: ODETTE
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: OLAF
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: PAINE
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: PAMELA
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: PETER
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: RICK
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: ROSE
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: SAM
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: SANDRA
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: TERESA
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: TERRY
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: VICTOR
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+            - word: WANDA
+              wordType: valueWord
+              synonyms: []
+              plural:
+              abbreviation:
+              alternateWords: []
+              weight:
+      - name: saffirSimpsonHurricaneScale
+        sql: "{CUBE}.saffir_simpson_hurricane_scale"
+        type: number
+        title: Saffir Simpson Hurricane Scale
+        meta:
+          llm_description: The storm's classification on the Saffir-Simpson Hurricane Wind Scale.
+      - name: seaLevelPressure
+        sql: "{CUBE}.sea_level_pressure"
+        type: number
+        title: Sea Level Pressure
+        meta:
+          llm_description: The sea level pressure measured during the storm.
+      - name: searchTerm
+        sql: "{CUBE}.searchTerm"
+        type: string
+        title: Search Term
+        meta:
+          llm_description: Keywords or terms used for searching the storm data.
+      - name: startDateTime
+        sql: "{CUBE}.start_date_time"
+        type: time
+        title: Start Date Time
+        meta:
+          llm_description: The date and time when the storm started.
+      - name: stormId
+        sql: "{CUBE}.storm_id"
+        type: string
+        title: Storm Id
+        meta:
+          llm_description: A unique identifier for the storm.
+      - name: stormNum
+        sql: "{CUBE}.storm_num"
+        type: string
+        title: Storm Num
+        meta:
+          llm_description: A numerical identifier for the storm.
+      - name: type
+        sql: "{CUBE}.type"
+        type: string
+        title: Type
+        meta:
+          llm_description: The type or category of the storm.
+    measures:
+      - name: count
+        type: count
+    meta:
+      uid: com::apporchid::weather::Storm
+      llm_description: The Storm table captures detailed information about storm events, including their geographical data, intensity, classification, and temporal attributes, facilitating comprehensive tracking and analysis of storm-related phenomena.

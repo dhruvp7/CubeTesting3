@@ -1,0 +1,57 @@
+# Split from UtilityAIOntology.cube.yml - see Cube_Format_Changes_Needed.md
+# for the full list of open items (BigQuery sql_table qualification, join FK
+# verification, placeholder primary keys) that still need review for this cube.
+cubes:
+  - name: NeighbourhoodAvgBills
+    title: Neighborhood Average Bills
+    description: Neighbourhood Average Bills
+    sql_table: eng_ao_format_testing.NeighbourhoodAvgBills
+    joins:
+      # TODO - VERIFY: references nested/dotted field 'contractAccount.id' instead of a flat column. Confirm the real FK column name in the warehouse table and update this SQL condition if needed.
+      - name: ContractAccount
+        relationship: many_to_one
+        sql: "{CUBE}.contractAccount.id = {ContractAccount}.id"
+      # TODO - VERIFY: references nested/dotted field 'customer.id' instead of a flat column. Confirm the real FK column name in the warehouse table and update this SQL condition if needed.
+      - name: Customer
+        relationship: many_to_one
+        sql: "{CUBE}.customer.id = {Customer}.id"
+      # TODO - VERIFY: references nested/dotted field 'premise.id' instead of a flat column. Confirm the real FK column name in the warehouse table and update this SQL condition if needed.
+      - name: Premise
+        relationship: many_to_one
+        sql: "{CUBE}.premise.id = {Premise}.id"
+      # TODO - VERIFY: references nested/dotted field 'startBillPeriod.billMonth' instead of a flat column. Confirm the real FK column name in the warehouse table and update this SQL condition if needed.
+      - name: Bills
+        relationship: many_to_one
+        sql: "{CUBE}.startBillPeriod.billMonth = {Bills}.startBillPeriod"
+    dimensions:
+      # PLACEHOLDER - replace 'sql' with a real unique column (or CONCAT
+      # of columns) for this table. A primary_key is required here because
+      # this cube participates in a join.
+      - name: composite_key_a
+        sql: column_a
+        type: number
+        primary_key: true
+      - name: avgBill
+        sql: "{CUBE}.avg_bill"
+        type: number
+        title: Average Bill
+        meta:
+          llm_description: The average bill amount for the neighborhood in a given month.
+      - name: finalBalance
+        sql: "{CUBE}.final_balance"
+        type: number
+        title: Balance
+        meta:
+          llm_description: The final balance amount after billing adjustments.
+      - name: billMonth
+        sql: "{CUBE}.bill_month"
+        type: time
+        title: Bill Month
+        meta:
+          llm_description: The month for which the average bill is calculated.
+    measures:
+      - name: count
+        type: count
+    meta:
+      uid: com::apporchid::utilityai::NeighbourhoodAvgBills
+      llm_description: NeighbourhoodAvgBills table tracks average bills, billing month, contract account, customer, final balance, and premise details for neighborhoods, aiding in financial analysis and billing management.

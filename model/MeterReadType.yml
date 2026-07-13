@@ -1,0 +1,47 @@
+# Split from UtilityAIOntology.cube.yml - see Cube_Format_Changes_Needed.md
+# for the full list of open items (BigQuery sql_table qualification, join FK
+# verification, placeholder primary keys) that still need review for this cube.
+cubes:
+  - name: MeterReadType
+    title: Meter Read Type
+    description: List of meter read types
+    sql_table: eng_ao_format_testing.MeterReadType
+    dimensions:
+      - name: description
+        sql: "{CUBE}.description"
+        type: string
+        title: Description
+        meta:
+          llm_description: A brief explanation or summary of the meter read type.
+      - name: id
+        sql: "{CUBE}.id"
+        type: string
+        primary_key: true
+        title: ID
+        meta:
+          llm_description: A unique identifier for each meter read type.
+      - name: name
+        sql: "{CUBE}.name"
+        type: string
+        title: Name
+        meta:
+          llm_description: The name assigned to the meter read type.
+      - name: status
+        sql: "{CUBE}.status"
+        type: string
+        title: Status
+        meta:
+          llm_description: The current status of the meter read type, indicating its operational state.
+    measures:
+      - name: count
+        type: count
+    meta:
+      uid: com::apporchid::utilityai::MeterReadType
+      llm_description: The MeterReadType table categorizes different types of meter readings, including their descriptions, unique identifiers, names, and statuses, facilitating efficient management and tracking of water meter data.
+      words:
+        - word: read type
+          wordType: word
+          synonyms: []
+          plural: read types
+          abbreviation:
+          weight: 1

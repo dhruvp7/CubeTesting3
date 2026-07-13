@@ -1,0 +1,70 @@
+# Split from UtilityAIOntology.cube.yml - see Cube_Format_Changes_Needed.md
+# for the full list of open items (BigQuery sql_table qualification, join FK
+# verification, placeholder primary keys) that still need review for this cube.
+cubes:
+  - name: WeatherStation
+    title: Weather Station
+    description: This mso represents weather station
+    sql_table: eng_ao_format_testing.WeatherStation
+    dimensions:
+      - name: elevation
+        sql: "{CUBE}.elevation"
+        type: number
+        title: Elevation
+        meta:
+          llm_description: The elevation of the weather station above sea level, measured in meters.
+      - name: gsnFlag
+        sql: "{CUBE}.gsn_flag"
+        type: string
+        title: GSN Flag
+        meta:
+          llm_description: A flag indicating whether the station is part of the Global Surface Network.
+      - name: hcnCrnFlag
+        sql: "{CUBE}.hcn_crn_flag"
+        type: string
+        title: HCN CRN Flag
+        meta:
+          llm_description: A flag indicating whether the station is part of the Historical Climatology Network or the Climate Reference Network.
+      - name: latitude
+        sql: "{CUBE}.latitude"
+        type: number
+        title: Latitude
+        meta:
+          llm_description: The latitude coordinate of the weather station.
+      - name: longitude
+        sql: "{CUBE}.longitude"
+        type: number
+        title: Longitude
+        meta:
+          llm_description: The longitude coordinate of the weather station.
+      - name: name
+        sql: "{CUBE}.name"
+        type: string
+        title: Name
+        meta:
+          llm_description: The name of the weather station.
+      - name: state
+        sql: "{CUBE}.state"
+        type: string
+        title: State
+        meta:
+          llm_description: The state or region where the weather station is located.
+      - name: id
+        sql: "{CUBE}.id"
+        type: string
+        primary_key: true
+        title: Station Id
+        meta:
+          llm_description: A unique identifier for the weather station.
+      - name: wmoid
+        sql: "{CUBE}.wmoid"
+        type: number
+        title: Wmoid
+        meta:
+          llm_description: The World Meteorological Organization identifier for the weather station.
+    measures:
+      - name: count
+        type: count
+    meta:
+      uid: com::apporchid::utility::common::WeatherStation
+      llm_description: WeatherStation table stores metadata about weather stations, including their geographical coordinates, elevation, identification codes, and other relevant attributes for tracking and managing weather data.

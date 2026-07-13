@@ -1,0 +1,56 @@
+# Split from UtilityAIOntology.cube.yml - see Cube_Format_Changes_Needed.md
+# for the full list of open items (BigQuery sql_table qualification, join FK
+# verification, placeholder primary keys) that still need review for this cube.
+cubes:
+  - name: CustomerPreferences
+    title: Customer Preferences
+    description: Customer Preferences
+    sql_table: eng_ao_format_testing.customer_preferences
+    joins:
+      - name: CommunicationMaster
+        relationship: one_to_one
+        sql: "{CUBE}.communication_id = {CommunicationMaster}.id"
+      - name: ContractAccount
+        relationship: many_to_one
+        sql: "{CUBE}.contract_account_id = {ContractAccount}.id"
+      - name: Customer
+        relationship: many_to_one
+        sql: "{CUBE}.customer_id = {Customer}.id"
+    dimensions:
+      - name: emailEnabled
+        sql: "{CUBE}.email_enabled"
+        type: boolean
+        title: Email Enabled
+        meta:
+          llm_description: Indicates if the customer prefers to receive communications via email.
+      - name: id
+        sql: "{CUBE}.id"
+        type: number
+        primary_key: true
+        title: ID
+        meta:
+          llm_description: Primary key for the customer preference record.
+      - name: paperEnabled
+        sql: "{CUBE}.paper_enabled"
+        type: boolean
+        title: Paper Enabled
+        meta:
+          llm_description: Indicates if the customer prefers to receive communications via paper mail.
+      - name: phoneEnabled
+        sql: "{CUBE}.phone_enabled"
+        type: boolean
+        title: Phone Enabled
+        meta:
+          llm_description: Indicates if the customer prefers to receive communications via phone.
+      - name: smsEnabled
+        sql: "{CUBE}.sms_enabled"
+        type: boolean
+        title: SMS Enabled
+        meta:
+          llm_description: Indicates if the customer prefers to receive communications via SMS.
+    measures:
+      - name: count
+        type: count
+    meta:
+      uid: com::apporchid::utilityai::CustomerPreferences
+      llm_description: The CustomerPreferences table stores customer communication preferences, including email, paper, phone, and SMS options, linked to specific communication, contract account, and customer IDs.
