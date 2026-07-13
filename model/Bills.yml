@@ -1,0 +1,144 @@
+# Split from UtilityAIOntology.cube.yml - see Cube_Format_Changes_Needed.md
+# for the full list of open items (BigQuery sql_table qualification, join FK
+# verification, placeholder primary keys) that still need review for this cube.
+cubes:
+  - name: Bills
+    title: Bills
+    description: Bills
+    sql_table: eng_ao_format_testing.Bills
+    joins:
+      # TODO - VERIFY: references nested/dotted field 'contractAccount.id' instead of a flat column. Confirm the real FK column name in the warehouse table and update this SQL condition if needed.
+      - name: ContractAccount
+        relationship: many_to_one
+        sql: "{CUBE}.contractAccount.id = {ContractAccount}.id"
+      # TODO - VERIFY: references nested/dotted field 'customer.id' instead of a flat column. Confirm the real FK column name in the warehouse table and update this SQL condition if needed.
+      - name: Customer
+        relationship: many_to_one
+        sql: "{CUBE}.customer.id = {Customer}.id"
+      # TODO - VERIFY: references nested/dotted field 'premise.id' instead of a flat column. Confirm the real FK column name in the warehouse table and update this SQL condition if needed.
+      - name: Premise
+        relationship: many_to_one
+        sql: "{CUBE}.premise.id = {Premise}.id"
+    dimensions:
+      - name: documentId
+        sql: "{CUBE}.document_id"
+        type: string
+        title: Bill Document ID
+        meta:
+          llm_description: Unique identifier for the billing document.
+      - name: billMonth
+        sql: "{CUBE}.bill_month"
+        type: time
+        title: Bill Month Date
+        meta:
+          llm_description: The month for which the bill is generated.
+      - name: billPaidDate
+        sql: "{CUBE}.bill_paid_date"
+        type: time
+        title: Bill paid date
+        meta:
+          llm_description: The date on which the bill was paid.
+      - name: dueDate
+        sql: "{CUBE}.due_date"
+        type: time
+        title: Due Date
+        meta:
+          llm_description: The date by which the bill is due.
+      - name: endBillPeriod
+        sql: "{CUBE}.end_bill_period"
+        type: time
+        title: End bill period
+        meta:
+          llm_description: The end date of the billing period.
+      - name: highBill
+        sql: "{CUBE}.high_bill"
+        type: number
+        title: High Bill
+        meta:
+          llm_description: Indicates whether the bill amount is unusually high.
+      - name: id
+        sql: "{CUBE}.bill_id"
+        type: string
+        primary_key: true
+        title: ID
+        meta:
+          llm_description: Unique identifier for the bill.
+      - name: billPaidFlag
+        sql: "{CUBE}.bill_paid_flag"
+        type: boolean
+        title: Is Bill paid
+        meta:
+          llm_description: Indicates whether the bill has been paid.
+      - name: billIdBeforeReview
+        sql: "{CUBE}.bill_id_before_rev"
+        type: string
+        title: Is Billed before review
+        meta:
+          llm_description: Unique identifier for the bill before any review or adjustments.
+      - name: documentReversed
+        sql: "{CUBE}.document_reversed"
+        type: boolean
+        title: is Document reversed
+        meta:
+          llm_description: Indicates whether the billing document has been reversed.
+      - name: estimatedBillFlag
+        sql: "{CUBE}.estimated_bill_flag"
+        type: boolean
+        title: is Estimated Bill
+        meta:
+          llm_description: Indicates whether the bill is estimated.
+      - name: highbillFlag
+        sql: "{CUBE}.highbill_flag"
+        type: boolean
+        title: is High Bill
+        meta:
+          llm_description: Indicates whether the bill is flagged as high.
+      - name: rebillFlag
+        sql: "{CUBE}.rebill_flag"
+        type: boolean
+        title: Is Rebill
+        meta:
+          llm_description: Indicates whether the bill is flagged for rebilling.
+      - name: daysInBillCycle
+        sql: "{CUBE}.days_in_bill_cycle"
+        type: number
+        title: No. of Days in Bill Cycle
+        meta:
+          llm_description: The number of days in the billing cycle.
+      - name: reversalDocument
+        sql: "{CUBE}.reversal_document"
+        type: string
+        title: Reversal document
+        meta:
+          llm_description: Document associated with the reversal of the bill.
+      - name: startBillPeriod
+        sql: "{CUBE}.start_bill_period"
+        type: time
+        title: Start bill period
+        meta:
+          llm_description: The start date of the billing period.
+      - name: statementDate
+        sql: "{CUBE}.statement_date"
+        type: time
+        title: Statement Date
+        meta:
+          llm_description: The date the bill statement was generated.
+    measures:
+      - name: count
+        type: count
+    meta:
+      uid: com::apporchid::utilityai::Bills
+      llm_description: The Bills table captures detailed billing information, including balances, bill periods, payment status, customer and contract details, and flags for various billing conditions, facilitating comprehensive tracking and management of water meter billing cycles.
+      words:
+        - word: "1.0"
+          wordType: word
+          synonyms: []
+          plural:
+          abbreviation:
+          weight:
+        - word: those
+          wordType: word
+          synonyms: []
+          plural:
+          abbreviation:
+          weight:
